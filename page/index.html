@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김민지 | 취업 포트폴리오</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #22c55e;
+    --green-d: #16a34a;
+    --green-l: #f0fdf4;
+    --gray: #f8fafc;
+    --gray2: #f1f5f9;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --muted: #64748b;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f8fafc;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ── 상단 네비 ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-name { font-weight: 700; font-size: .95rem; color: var(--text); }
+  .nav-name span { color: var(--green-d); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: .82rem; font-weight: 500; color: var(--muted);
+    text-decoration: none; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--green-d); }
+
+  /* ── 히어로 ── */
+  .hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #065f46 100%);
+    padding: 100px 5% 80px;
+    text-align: center; color: white;
+  }
+  .hero-avatar {
+    width: 110px; height: 110px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--green), #16a34a);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.8rem; margin: 0 auto 1.5rem;
+    border: 4px solid rgba(255,255,255,.2);
+  }
+  .hero h1 {
+    font-size: 2.4rem; font-weight: 900; letter-spacing: -.03em;
+    margin-bottom: .5rem;
+  }
+  .hero h1 span { color: var(--green); }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,.7); margin-bottom: 1.8rem; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; }
+  .tag {
+    padding: .35rem .9rem; border-radius: 100px;
+    font-size: .78rem; font-weight: 600; letter-spacing: .02em;
+  }
+  .tag-green { background: rgba(34,197,94,.2); color: #86efac; border: 1px solid rgba(34,197,94,.3); }
+  .tag-blue { background: rgba(96,165,250,.18); color: #93c5fd; border: 1px solid rgba(96,165,250,.3); }
+  .tag-purple { background: rgba(167,139,250,.18); color: #c4b5fd; border: 1px solid rgba(167,139,250,.3); }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
+  .btn {
+    padding: .7rem 1.6rem; border-radius: 8px; font-size: .88rem;
+    font-weight: 700; cursor: pointer; border: none; font-family: inherit;
+    transition: all .2s; text-decoration: none; display: inline-block;
+  }
+  .btn-green { background: var(--green); color: #0f172a; }
+  .btn-green:hover { background: #16a34a; transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: white; border: 1px solid rgba(255,255,255,.3); }
+  .btn-outline:hover { background: rgba(255,255,255,.1); }
+
+  /* ── 섹션 공통 ── */
+  section { padding: 80px 5%; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-badge {
+    display: inline-block; padding: .3rem .85rem;
+    background: var(--green-l); color: var(--green-d);
+    border-radius: 100px; font-size: .74rem; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase; margin-bottom: .9rem;
+  }
+  h2 { font-size: 1.85rem; font-weight: 800; letter-spacing: -.03em; margin-bottom: .6rem; }
+  .section-desc { color: var(--muted); font-size: .9rem; margin-bottom: 2.5rem; }
+  .divider {
+    height: 1px; background: var(--border); margin: 0 5%;
+  }
+
+  /* ── STEP 1: 자기분석 ── */
+  #step1 { background: var(--white); }
+  .strengths-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 2.5rem;
+  }
+  .strength-card {
+    background: var(--gray); border: 1px solid var(--border); border-radius: 14px;
+    padding: 1.6rem 1.4rem; transition: box-shadow .2s;
+  }
+  .strength-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+  .strength-icon { font-size: 1.8rem; margin-bottom: .8rem; }
+  .strength-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: .4rem; }
+  .strength-card p { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+  .values-wrap { display: flex; flex-wrap: wrap; gap: .8rem; margin-bottom: 2.5rem; }
+  .value-chip {
+    padding: .5rem 1.1rem; background: var(--green-l);
+    border: 1px solid #bbf7d0; border-radius: 8px;
+    font-size: .85rem; font-weight: 600; color: var(--green-d);
+  }
+
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content:''; position:absolute; left:.55rem; top:0; bottom:0;
+    width:2px; background: linear-gradient(var(--green), #bbf7d0);
+    border-radius:2px;
+  }
+  .tl-item { position: relative; margin-bottom: 1.4rem; }
+  .tl-dot {
+    position: absolute; left: -2rem; top: .3rem;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--green); border: 2px solid white;
+    box-shadow: 0 0 0 3px #bbf7d0;
+  }
+  .tl-year { font-size: .72rem; font-weight: 700; color: var(--green-d); margin-bottom: .15rem; letter-spacing: .04em; }
+  .tl-title { font-size: .9rem; font-weight: 700; }
+  .tl-desc { font-size: .82rem; color: var(--muted); }
+
+  /* ── STEP 2: 직무·기업 분석 ── */
+  #step2 { background: #fafbff; }
+  .job-card {
+    background: white; border: 1px solid var(--border); border-radius: 16px;
+    padding: 2rem; margin-bottom: 1.5rem; transition: box-shadow .2s;
+  }
+  .job-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,.08); }
+  .job-card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+  .job-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .job-icon.blue { background: #eff6ff; }
+  .job-icon.purple { background: #faf5ff; }
+  .job-card h3 { font-size: 1rem; font-weight: 700; }
+  .job-card .company { font-size: .8rem; color: var(--muted); }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+  .skill-tag {
+    padding: .25rem .7rem; border-radius: 6px;
+    font-size: .76rem; font-weight: 600;
+    background: var(--gray2); color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .prep-list { margin-top: 1.2rem; }
+  .prep-item { display: flex; gap: .7rem; align-items: flex-start; margin-bottom: .5rem; font-size: .84rem; }
+  .prep-item::before { content: "▸"; color: var(--green-d); font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
+
+  .companies-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 2rem; }
+  .company-card {
+    background: white; border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.3rem; text-align: center; transition: all .2s;
+  }
+  .company-card:hover { border-color: var(--green); box-shadow: 0 2px 12px rgba(34,197,94,.12); }
+  .company-name { font-size: .9rem; font-weight: 700; margin-bottom: .3rem; }
+  .company-desc { font-size: .76rem; color: var(--muted); }
+  .company-match {
+    margin-top: .7rem; display: inline-block;
+    padding: .2rem .6rem; border-radius: 100px;
+    font-size: .72rem; font-weight: 700;
+    background: var(--green-l); color: var(--green-d);
+  }
+
+  /* ── STEP 3: 취업스킬 ── */
+  #step3 { background: var(--white); }
+  .skill-section { margin-bottom: 2.5rem; }
+  .skill-header { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem; }
+  .skill-header::before { content: ''; display: block; width: 4px; height: 18px; background: var(--green); border-radius: 2px; }
+
+  .intro-box {
+    background: var(--green-l); border: 1px solid #bbf7d0;
+    border-radius: 14px; padding: 1.8rem 2rem; margin-bottom: 2rem;
+  }
+  .intro-box h4 { font-size: .88rem; font-weight: 700; color: var(--green-d); margin-bottom: .6rem; letter-spacing: .04em; text-transform: uppercase; }
+  .intro-box p { font-size: .9rem; line-height: 1.8; color: #166534; }
+  .intro-box .ai-note {
+    margin-top: 1rem; padding: .6rem .9rem;
+    background: rgba(255,255,255,.7); border-radius: 8px;
+    font-size: .78rem; color: var(--green-d); font-weight: 500;
+  }
+
+  .interview-list { display: flex; flex-direction: column; gap: .9rem; }
+  .interview-item {
+    background: var(--gray); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .interview-q {
+    padding: 1rem 1.3rem; font-size: .88rem; font-weight: 700;
+    display: flex; align-items: center; gap: .7rem; cursor: pointer;
+    transition: background .15s;
+  }
+  .interview-q:hover { background: var(--gray2); }
+  .interview-q::before { content: "Q"; color: var(--green-d); font-weight: 900; flex-shrink: 0; }
+  .interview-a {
+    padding: 0 1.3rem 1rem; font-size: .85rem; line-height: 1.7;
+    color: var(--muted); border-top: 1px solid var(--border);
+    padding-top: .9rem;
+  }
+
+  /* ── 업데이트 히스토리 ── */
+  #history { background: #fafbff; }
+  .history-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .history-card { background: white; padding: 1.6rem 1.4rem; }
+  .history-year {
+    font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; margin-bottom: .6rem; padding: .3rem .7rem;
+    border-radius: 6px; display: inline-block;
+  }
+  .year-1 { background: #eff6ff; color: #1d4ed8; }
+  .year-2 { background: #f0fdf4; color: var(--green-d); }
+  .year-3 { background: #faf5ff; color: #7c3aed; }
+  .year-4 { background: #fff7ed; color: #c2410c; }
+  .history-card h4 { font-size: .88rem; font-weight: 700; margin-bottom: .5rem; }
+  .history-card ul { list-style: none; }
+  .history-card ul li { font-size: .8rem; color: var(--muted); padding: .2rem 0; }
+  .history-card ul li::before { content: "•"; color: var(--green); margin-right: .4rem; }
+  .history-add {
+    margin-top: .8rem; font-size: .76rem; color: #94a3b8;
+    font-style: italic; border-top: 1px dashed var(--border); padding-top: .6rem;
+  }
+
+  /* ── 컨택 ── */
+  #contact { background: linear-gradient(135deg, #0f172a, #1e3a5f); color: white; text-align: center; }
+  #contact h2 { color: white; margin-bottom: .6rem; }
+  #contact .section-desc { color: rgba(255,255,255,.6); }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: .5rem;
+    padding: .7rem 1.4rem; border-radius: 10px;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+    color: white; text-decoration: none; font-size: .85rem; font-weight: 600;
+    transition: all .2s;
+  }
+  .contact-link:hover { background: rgba(255,255,255,.15); transform: translateY(-1px); }
+
+  /* ── AI 생성 배지 ── */
+  .ai-badge {
+    display: inline-flex; align-items: center; gap: .4rem;
+    padding: .28rem .7rem; border-radius: 100px;
+    background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.2);
+    font-size: .7rem; font-weight: 600; color: var(--green-d);
+    margin-top: .5rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- 네비 -->
+<nav>
+  <div class="nav-name">김민지 <span>포트폴리오</span></div>
+  <ul class="nav-links">
+    <li><a href="#step1">자기분석</a></li>
+    <li><a href="#step2">직무·기업 분석</a></li>
+    <li><a href="#step3">취업스킬</a></li>
+    <li><a href="#history">성장 기록</a></li>
+    <li><a href="#contact">연락하기</a></li>
+  </ul>
+</nav>
+
+<!-- 히어로 -->
+<div class="hero">
+  <div class="hero-avatar">😊</div>
+  <h1>안녕하세요, <span>김민지</span>입니다</h1>
+  <p class="hero-sub">경북대학교 경영학과 2학년 · AI 취업포트폴리오 캠프 참여자</p>
+  <div class="hero-tags">
+    <span class="tag tag-green">경영학과</span>
+    <span class="tag tag-blue">마케팅 지망</span>
+    <span class="tag tag-purple">2026년 졸업 예정</span>
+  </div>
+  <div class="hero-btns">
+    <a class="btn btn-green" href="#step1">포트폴리오 보기</a>
+    <a class="btn btn-outline" href="#contact">연락하기</a>
+  </div>
+  <div style="margin-top:1.5rem">
+    <span class="ai-badge">✨ AI 활용 포트폴리오 캠프 제작</span>
+  </div>
+</div>
+
+<!-- STEP 1: 자기분석 -->
+<section id="step1">
+  <div class="section-inner">
+    <span class="section-badge">Step 01</span>
+    <h2>자기분석</h2>
+    <p class="section-desc">나는 어떤 사람인가? AI와 대화하며 정리한 나의 강점·가치관·경험입니다.</p>
+
+    <div style="font-size:.95rem;font-weight:700;margin-bottom:1rem">핵심 강점</div>
+    <div class="strengths-grid">
+      <div class="strength-card">
+        <div class="strength-icon">🗣️</div>
+        <h4>커뮤니케이션</h4>
+        <p>팀 프로젝트에서 의견 조율을 주도하고, 복잡한 내용을 쉽게 설명하는 것을 좋아합니다.</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">📊</div>
+        <h4>데이터 분석 관심</h4>
+        <p>숫자와 통계에서 의미를 찾는 것에 흥미를 느끼며, 엑셀·기초 통계 수업을 즐겼습니다.</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">🎯</div>
+        <h4>목표 지향적</h4>
+        <p>목표를 세우면 끝까지 해내는 성격으로, 학점 관리와 자격증 취득을 병행하고 있습니다.</p>
+      </div>
+    </div>
+
+    <div style="font-size:.95rem;font-weight:700;margin-bottom:.8rem">나의 가치관</div>
+    <div class="values-wrap">
+      <span class="value-chip">성장</span>
+      <span class="value-chip">협업</span>
+      <span class="value-chip">도전</span>
+      <span class="value-chip">창의성</span>
+      <span class="value-chip">사람 중심</span>
+      <span class="value-chip">지속가능성</span>
+    </div>
+
+    <div style="font-size:.95rem;font-weight:700;margin-bottom:1rem">지금까지의 경험</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2024.03</div>
+        <div class="tl-title">경영학과 입학 · 학생회 홍보팀 활동</div>
+        <div class="tl-desc">SNS 콘텐츠 기획 및 디자인 담당, 팔로워 30% 증가 달성</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2024.09</div>
+        <div class="tl-title">교내 창업 아이디어 경진대회 참가</div>
+        <div class="tl-desc">ESG 마케팅 아이디어로 장려상 수상. 팀장 역할 수행</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2025.01</div>
+        <div class="tl-title">컴퓨터활용능력 2급 취득</div>
+        <div class="tl-desc">데이터 분석 역량 강화를 위해 자격증 취득</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2025.06</div>
+        <div class="tl-title">AI 취업 포트폴리오 캠프 참여 · 이 페이지 제작</div>
+        <div class="tl-desc">AI 도구를 활용해 처음으로 나만의 포트폴리오 웹페이지를 만들었습니다</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STEP 2: 직무·기업 분석 -->
+<section id="step2">
+  <div class="section-inner">
+    <span class="section-badge">Step 02</span>
+    <h2>직무·기업 분석</h2>
+    <p class="section-desc">내가 원하는 직무가 무엇인지, 어떤 기업을 목표로 하는지 AI와 함께 조사했습니다.</p>
+
+    <div class="job-card">
+      <div class="job-card-header">
+        <div class="job-icon blue">📣</div>
+        <div>
+          <h3>디지털 마케터</h3>
+          <div class="company">1순위 목표 직무</div>
+        </div>
+      </div>
+      <p style="font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:1rem">
+        SNS·검색 광고를 활용해 소비자와 브랜드를 연결하는 직무입니다. 데이터를 보며 광고 효율을 높이고, 콘텐츠를 기획합니다. 전공 특성상 마케팅 이론과 실습이 연결되는 직무라 선택했습니다.
+      </p>
+      <div style="font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.5rem">필요 역량</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SNS 콘텐츠 기획</span>
+        <span class="skill-tag">데이터 분석</span>
+        <span class="skill-tag">광고 플랫폼 운용</span>
+        <span class="skill-tag">카피라이팅</span>
+        <span class="skill-tag">엑셀/GA 활용</span>
+      </div>
+      <div class="prep-list" style="margin-top:1.2rem">
+        <div style="font-size:.82rem;font-weight:700;margin-bottom:.5rem">취업 준비 방향 (AI 분석 결과)</div>
+        <div class="prep-item">구글 애널리틱스(GA4) 기초 수료 → 데이터 분석 역량 증명</div>
+        <div class="prep-item">개인 SNS 채널 운영으로 콘텐츠 포트폴리오 쌓기</div>
+        <div class="prep-item">마케팅 공모전 참여로 실전 경험 확보</div>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-card-header">
+        <div class="job-icon purple">🛍️</div>
+        <div>
+          <h3>MD (상품기획자)</h3>
+          <div class="company">2순위 목표 직무</div>
+        </div>
+      </div>
+      <p style="font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:1rem">
+        어떤 상품을 어떻게 팔지 기획하는 직무로, 시장 트렌드 분석·상품 선정·판매 전략 수립이 핵심입니다. 소비자 심리에 관심이 많아 2순위로 선택했습니다.
+      </p>
+      <div class="skill-tags">
+        <span class="skill-tag">트렌드 분석</span>
+        <span class="skill-tag">재고·매출 관리</span>
+        <span class="skill-tag">협상력</span>
+        <span class="skill-tag">엑셀 고급</span>
+      </div>
+    </div>
+
+    <div style="font-size:.95rem;font-weight:700;margin-top:2.5rem;margin-bottom:.8rem">관심 기업 목록</div>
+    <div class="companies-grid">
+      <div class="company-card">
+        <div style="font-size:1.6rem;margin-bottom:.5rem">🛒</div>
+        <div class="company-name">CJ ENM</div>
+        <div class="company-desc">디지털 마케팅 강점, 콘텐츠 역량 필요</div>
+        <span class="company-match">적합도 높음</span>
+      </div>
+      <div class="company-card">
+        <div style="font-size:1.6rem;margin-bottom:.5rem">💻</div>
+        <div class="company-name">카카오</div>
+        <div class="company-desc">데이터 기반 마케팅, 성장 가능성</div>
+        <span class="company-match">적합도 중간</span>
+      </div>
+      <div class="company-card">
+        <div style="font-size:1.6rem;margin-bottom:.5rem">🌿</div>
+        <div class="company-name">아모레퍼시픽</div>
+        <div class="company-desc">ESG 관심과 연결, 브랜드 마케팅</div>
+        <span class="company-match">적합도 높음</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STEP 3: 취업스킬 -->
+<section id="step3">
+  <div class="section-inner">
+    <span class="section-badge">Step 03</span>
+    <h2>취업스킬</h2>
+    <p class="section-desc">AI와 함께 작성한 자기소개서 초안과 면접 준비 내용입니다.</p>
+
+    <div class="skill-section">
+      <div class="skill-header">자기소개서 (AI 초안 → 본인 수정)</div>
+      <div class="intro-box">
+        <h4>지원 동기</h4>
+        <p>
+          저는 사람들이 '왜 이 제품을 선택하는가'에 항상 관심을 가져왔습니다. 학생회 홍보팀에서 SNS 콘텐츠를 운영하며, 같은 내용도 표현 방식에 따라 반응이 크게 달라진다는 것을 직접 경험했습니다. 특히 팔로워 30%를 증가시키는 과정에서 데이터를 보며 콘텐츠를 개선하는 일에 큰 흥미를 느꼈습니다. 이 경험을 바탕으로 디지털 마케팅 분야에서 데이터와 창의성을 결합하는 일을 하고 싶습니다.
+        </p>
+        <div class="ai-note">✨ AI가 내 경험을 바탕으로 초안을 작성 → 내가 직접 다듬은 문장입니다</div>
+      </div>
+    </div>
+
+    <div class="skill-section">
+      <div class="skill-header">예상 면접 질문 & 답변 준비</div>
+      <div class="interview-list">
+        <div class="interview-item">
+          <div class="interview-q">자신의 가장 큰 강점이 무엇이라고 생각하나요?</div>
+          <div class="interview-a">
+            저의 가장 큰 강점은 '사람 사이에서 다리 역할을 하는 능력'입니다. 팀 프로젝트에서 의견이 충돌할 때 각자의 입장을 정리하고 절충안을 찾는 역할을 자주 맡았습니다. 이 덕분에 팀이 더 빠르게 목표를 달성할 수 있었습니다.
+          </div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">마케팅 직무에 지원하게 된 이유가 무엇인가요?</div>
+          <div class="interview-a">
+            소비자가 브랜드를 선택하는 '이유'를 만드는 일에 매력을 느꼈습니다. 학생회 활동에서 SNS 반응 데이터를 분석하며 콘텐츠를 개선했던 경험이 마케팅의 본질과 닮아 있다고 생각했고, 이를 더 전문적으로 배우고 싶어 지원했습니다.
+          </div>
+        </div>
+        <div class="interview-item">
+          <div class="interview-q">아직 부족한 점과 어떻게 보완할 계획인가요?</div>
+          <div class="interview-a">
+            광고 플랫폼 실무 경험이 부족합니다. 이를 보완하기 위해 구글 애널리틱스 자격증을 준비 중이며, 개인 SNS를 직접 운영하며 광고 성과를 분석하는 연습을 하고 있습니다.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 성장 기록 -->
+<section id="history">
+  <div class="section-inner">
+    <span class="section-badge">성장 기록</span>
+    <h2>학년별 업데이트</h2>
+    <p class="section-desc">이 포트폴리오는 매년 업데이트됩니다. 졸업까지 계속 채워갑니다.</p>
+    <div class="history-grid">
+      <div class="history-card">
+        <span class="history-year year-1">1학년</span>
+        <h4>기초 다지기</h4>
+        <ul>
+          <li>입학 · 학생회 홍보팀 합류</li>
+          <li>컴퓨터활용능력 2급 취득</li>
+          <li>포트폴리오 첫 제작 (캠프 참여)</li>
+        </ul>
+      </div>
+      <div class="history-card">
+        <span class="history-year year-2">2학년</span>
+        <h4>방향 찾기 (현재)</h4>
+        <ul>
+          <li>창업 아이디어 경진대회 장려상</li>
+          <li>디지털 마케팅 직무 확정</li>
+          <li>관심 기업 리스트 작성</li>
+        </ul>
+        <div class="history-add">← 지금 여기</div>
+      </div>
+      <div class="history-card">
+        <span class="history-year year-3">3학년</span>
+        <h4>경험 쌓기 (예정)</h4>
+        <ul>
+          <li>마케팅 인턴 지원 예정</li>
+          <li>GA4 자격증 취득 목표</li>
+          <li>공모전 수상 경력 추가 예정</li>
+        </ul>
+        <div class="history-add">추가 예정</div>
+      </div>
+      <div class="history-card">
+        <span class="history-year year-4">4학년</span>
+        <h4>최종 완성 (예정)</h4>
+        <ul>
+          <li>졸업 논문·프로젝트 추가</li>
+          <li>최종 취업 목표 기업 지원</li>
+          <li>포트폴리오 완성본 공개</li>
+        </ul>
+        <div class="history-add">추가 예정</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 컨택 -->
+<section id="contact">
+  <div class="section-inner">
+    <span class="section-badge" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)">Contact</span>
+    <h2>함께 이야기해요</h2>
+    <p class="section-desc">궁금한 점이나 협업 제안이 있으시면 연락해 주세요!</p>
+    <div class="contact-links">
+      <a href="mailto:minjii@email.com" class="contact-link">✉ minjii@email.com</a>
+      <a href="#" class="contact-link">📷 Instagram</a>
+      <a href="#" class="contact-link">💼 LinkedIn</a>
+    </div>
+    <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);font-size:.76rem;color:rgba(255,255,255,.4);text-align:center">
+      이 포트폴리오는 (주)해달프로그래밍의 AI 취업포트폴리오 캠프에서 제작되었습니다 · haedal.io
+    </div>
+  </div>
+</section>
+
+<script>
+  // 스크롤 시 네비 활성화
+  const secs = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    secs.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.fontWeight = a.getAttribute('href') === '#' + cur ? '700' : '500';
+      a.style.color = a.getAttribute('href') === '#' + cur ? '#16a34a' : '';
+    });
+  });
+</script>
+</body>
+</html>
